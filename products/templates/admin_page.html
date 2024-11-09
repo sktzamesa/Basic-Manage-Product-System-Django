@@ -1,0 +1,27 @@
+<!-- admin_page.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Add Product</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
+    </form>
+
+    <hr>
+
+    <h1>Product List</h1>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.Model_Description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

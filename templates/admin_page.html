@@ -1,0 +1,70 @@
+<!-- templates/admin_page.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page - Manage Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .product-list {
+            margin-top: 30px;
+        }
+        .product-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .product-item:last-child {
+            border-bottom: none;
+        }
+        .product-description {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Product</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+        </form>
+
+        <div class="product-list">
+            <h2>Product List</h2>
+            {% if products %}
+                {% for product in products %}
+                    <div class="product-item">
+                        <span class="product-description">{{ product.Model_Description }}</span> - {{ product.Price }}$
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No products available. Add some products to see them listed here.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
